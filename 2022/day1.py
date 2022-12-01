@@ -1,5 +1,3 @@
-
-
 def main():
 	fname = "./day1_1.txt"
 	elves = [0]
@@ -12,10 +10,7 @@ def main():
 				continue
 			elves[i] += int(line)
 	print(max(elves))
-	z = 0
-	for i in sorted(elves, reverse=True)[:3]:
-		z += i
-	print(z)
+	print(sum(int(v) for v in sorted(elves, reverse=True)[:3]))
 
 if __name__ == "__main__":
     main()
