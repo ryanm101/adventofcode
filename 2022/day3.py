@@ -26,8 +26,7 @@ def getGroups(f):
 def puzzle1(f):
     acc = 0
     for line in f.readlines():
-        c1, c2 = splitCompart(line)
-        for i in getDups(c1,c2):
+        for i in getDups(*splitCompart(line)):
             acc += atm(i)
     return acc
 
