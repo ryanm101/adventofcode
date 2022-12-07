@@ -10,8 +10,7 @@ def splitCompart(a):
     return a[:len(a)//2], a[len(a)//2:]
 
 def getDups(a,b):
-    x = [l for l in a if l in b]
-    return set(x)
+    return set([l for l in a if l in b])
 
 def getGroups(f):
     group = []
