@@ -53,8 +53,7 @@ def iterateTrees(data, rows, columns):
 
 
 def getScenicScore(data, x, y, rows, columns):
-	#print("x{}y{}".format(x,y))
-	val = data[x][y]
+	val = data[y][x]
 	
 	u = y - 1
 	d = y + 1
@@ -66,34 +65,30 @@ def getScenicScore(data, x, y, rows, columns):
 	ls = 0
 	rs = 0
 
-	# x is c, y is r
-
-	if x != 3 or y != 2:
-		return 0
-	print(data[x][y])
-	print("x=3,y=2")
-	print("X={} Y={}".format(x,y))
-    # 1 1 1 2
-	# 1 1 2 2
-
-	# 2 1 1 1
-	# 2 2 1 2
 	while u >= 0:
-		t = data[y][u]
-		print("X={} Y={}".format(x,u))
-		print(t)
+		t = data[u][x]
+		us = us + 1
 		if val >= t:
-			us = us + 1
 			if val == t:
 				break
 			u = u - 1
 			continue
 		break
 
+	while d < rows:
+		t = data[d][x]
+		ds = ds + 1
+		if val >= t:
+			if val == t:
+				break
+			d = d + 1
+			continue
+		break
+
 	while l >= 0:
 		t = data[y][l]
+		ls = ls + 1
 		if val >= t:
-			ls = ls + 1
 			if val == t:
 				break
 			l = l - 1
@@ -102,37 +97,14 @@ def getScenicScore(data, x, y, rows, columns):
 		
 	while r < columns:
 		t = data[y][r]
+		rs = rs + 1
 		if val >= t :
-			rs = rs + 1
 			if val == t:
 				break
 			r = r + 1
 			continue
 		break
-	
-	while d < rows:
-		t = data[x][d]
-		if val >= t:
-			ds = ds + 1
-			if val == t:
-				break
-			d = d + 1
-			continue
-		break
 
-	if us == 0:
-		us = 1
-	if ds == 0:
-		ds = 1
-	if ls == 0:
-		ls = 1
-	if rs == 0:
-		rs = 1
-
-	print("  U L R D")
-	print("5 2 2 1 2")
-	print("{} {} {} {} {}".format(val, us, ls, rs, ds)) 
-	
 	return (us * ds * ls * rs)
 
 
@@ -168,7 +140,7 @@ def puzzle2(f):
 
 
 def main():
-	fname = "./day8s.txt"
+	fname = "./day8.txt"
 	with open(fname) as f:
 		print(puzzle1(f))
 		f.seek(0)
